@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Orçamento · Planejamento Financeiro</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <div id="sidebar-container"></div>
+
+    <main class="conteudo">
+      <div class="topo-pagina">
+        <div>
+          <h1>Orçamento mensal</h1>
+          <p>Defina limites de gastos por categoria e acompanhe se estão sendo respeitados.</p>
+        </div>
+        <button class="btn btn-primario" id="btnNovoOrcamento">+ Novo limite</button>
+      </div>
+
+      <div id="areaAlerta"></div>
+
+      <div class="painel">
+        <h2>Período</h2>
+        <div class="form-linha">
+          <div class="campo">
+            <label for="filtroMes">Mês</label>
+            <select id="filtroMes"></select>
+          </div>
+          <div class="campo">
+            <label for="filtroAno">Ano</label>
+            <input type="number" id="filtroAno" />
+          </div>
+          <button class="btn btn-secundario" id="btnFiltrar">Ver período</button>
+        </div>
+      </div>
+
+      <div class="painel" id="painelOrcamentos">
+        <h2>Limites do período</h2>
+        <div id="listaOrcamentos"></div>
+        <p class="vazio" id="semOrcamentos" style="display:none;">Nenhum limite definido para este período.</p>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-fundo" id="modalFundo">
+    <div class="modal">
+      <h2>Novo limite de gastos</h2>
+      <div id="modalAlerta"></div>
+      <form id="formOrcamento">
+        <div class="campo">
+          <label for="categoria_id">Categoria de despesa</label>
+          <select id="categoria_id" required></select>
+        </div>
+        <div class="campo-linha">
+          <div class="campo">
+            <label for="mes">Mês</label>
+            <select id="mes"></select>
+          </div>
+          <div class="campo">
+            <label for="ano">Ano</label>
+            <input type="number" id="ano" required />
+          </div>
+        </div>
+        <div class="campo">
+          <label for="limite">Limite mensal</label>
+          <input type="number" id="limite" min="0.01" step="0.01" required />
+        </div>
+        <div class="modal-acoes">
+          <button type="button" class="btn btn-secundario" id="btnCancelar">Cancelar</button>
+          <button type="submit" class="btn btn-primario">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/orcamento.js"></script>
+</body>
+</html>

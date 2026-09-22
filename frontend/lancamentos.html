@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lançamentos · Planejamento Financeiro</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <div id="sidebar-container"></div>
+
+    <main class="conteudo">
+      <div class="topo-pagina">
+        <div>
+          <h1>Lançamentos</h1>
+          <p>Cadastre e acompanhe suas receitas e despesas.</p>
+        </div>
+        <button class="btn btn-primario" id="btnNovo">+ Novo lançamento</button>
+      </div>
+
+      <div id="areaAlerta"></div>
+
+      <div class="painel">
+        <h2>Filtros</h2>
+        <div class="form-linha">
+          <div class="campo">
+            <label for="filtroInicio">De</label>
+            <input type="date" id="filtroInicio" />
+          </div>
+          <div class="campo">
+            <label for="filtroFim">Até</label>
+            <input type="date" id="filtroFim" />
+          </div>
+          <div class="campo">
+            <label for="filtroTipo">Tipo</label>
+            <select id="filtroTipo">
+              <option value="">Todos</option>
+              <option value="receita">Receitas</option>
+              <option value="despesa">Despesas</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="filtroCategoria">Categoria</label>
+            <select id="filtroCategoria"><option value="">Todas</option></select>
+          </div>
+          <button class="btn btn-secundario" id="btnFiltrar">Filtrar</button>
+          <button class="btn btn-secundario" id="btnLimparFiltro">Limpar</button>
+        </div>
+      </div>
+
+      <div class="painel">
+        <h2>Histórico financeiro</h2>
+        <div class="tabela-scroll">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th><th>Valor</th><th></th></tr>
+            </thead>
+            <tbody id="corpoTabela"></tbody>
+          </table>
+        </div>
+        <p class="vazio" id="tabelaVazia" style="display:none;">Nenhum lançamento encontrado.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal de lançamento -->
+  <div class="modal-fundo" id="modalFundo">
+    <div class="modal">
+      <h2 id="modalTitulo">Novo lançamento</h2>
+      <div id="modalAlerta"></div>
+      <form id="formLancamento">
+        <input type="hidden" id="lancamentoId" />
+        <div class="campo">
+          <label for="tipo">Tipo</label>
+          <select id="tipo" required>
+            <option value="receita">Receita</option>
+            <option value="despesa">Despesa</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="descricao">Descrição</label>
+          <input type="text" id="descricao" required placeholder="Ex.: Supermercado" />
+        </div>
+        <div class="campo-linha">
+          <div class="campo">
+            <label for="valor">Valor</label>
+            <input type="number" id="valor" min="0.01" step="0.01" required />
+          </div>
+          <div class="campo">
+            <label for="data">Data</label>
+            <input type="date" id="data" required />
+          </div>
+        </div>
+        <div class="campo">
+          <label for="categoria_id">Categoria</label>
+          <select id="categoria_id"></select>
+        </div>
+        <div class="modal-acoes">
+          <button type="button" class="btn btn-secundario" id="btnCancelar">Cancelar</button>
+          <button type="submit" class="btn btn-primario">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/lancamentos.js"></script>
+</body>
+</html>

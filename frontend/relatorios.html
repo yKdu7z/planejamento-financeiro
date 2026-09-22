@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Relatórios · Planejamento Financeiro</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <div id="sidebar-container"></div>
+
+    <main class="conteudo">
+      <div class="topo-pagina">
+        <div>
+          <h1>Relatórios financeiros</h1>
+          <p>Consulte totais, gastos por categoria e a evolução do seu saldo.</p>
+        </div>
+      </div>
+
+      <div id="areaAlerta"></div>
+
+      <div class="painel">
+        <h2>Período</h2>
+        <div class="form-linha">
+          <div class="campo">
+            <label for="dataInicio">De</label>
+            <input type="date" id="dataInicio" />
+          </div>
+          <div class="campo">
+            <label for="dataFim">Até</label>
+            <input type="date" id="dataFim" />
+          </div>
+          <button class="btn btn-secundario" id="btnGerar">Gerar relatório</button>
+        </div>
+      </div>
+
+      <div class="grid-cards">
+        <div class="card"><div class="rotulo">Total de receitas</div><div class="valor" id="valReceitas">--</div></div>
+        <div class="card"><div class="rotulo">Total de despesas</div><div class="valor" id="valDespesas">--</div></div>
+        <div class="card"><div class="rotulo">Saldo do período</div><div class="valor" id="valSaldoPeriodo">--</div></div>
+      </div>
+
+      <div class="painel-duas-colunas">
+        <div class="painel">
+          <h2>Evolução do saldo</h2>
+          <canvas id="graficoEvolucao" height="220"></canvas>
+        </div>
+        <div class="painel">
+          <h2>Gastos por categoria</h2>
+          <canvas id="graficoGastos" height="220"></canvas>
+        </div>
+      </div>
+
+      <div class="painel">
+        <h2>Progresso consolidado das metas</h2>
+        <div class="tabela-scroll">
+          <table>
+            <thead><tr><th>Meta</th><th>Progresso</th><th>Situação</th></tr></thead>
+            <tbody id="corpoMetas"></tbody>
+          </table>
+        </div>
+        <p class="vazio" id="semMetas" style="display:none;">Nenhuma meta cadastrada.</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/relatorios.js"></script>
+</body>
+</html>

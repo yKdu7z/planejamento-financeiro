@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard · Planejamento Financeiro</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <div id="sidebar-container"></div>
+
+    <main class="conteudo">
+      <div class="topo-pagina">
+        <div>
+          <h1>Dashboard</h1>
+          <p>Visão geral da sua situação financeira no mês atual.</p>
+        </div>
+      </div>
+
+      <div id="areaAlerta"></div>
+
+      <div class="grid-cards" id="cardsResumo">
+        <div class="card"><div class="rotulo">Saldo atual</div><div class="valor" id="valSaldo">--</div></div>
+        <div class="card"><div class="rotulo">Receitas do mês</div><div class="valor" id="valReceitas">--</div></div>
+        <div class="card"><div class="rotulo">Despesas do mês</div><div class="valor" id="valDespesas">--</div></div>
+        <div class="card">
+          <div class="rotulo">Economia do mês</div>
+          <div class="valor" id="valEconomia">--</div>
+          <div class="variacao" id="valVariacao"></div>
+        </div>
+      </div>
+
+      <div class="painel-duas-colunas">
+        <div class="painel">
+          <h2>Despesas por categoria (mês atual)</h2>
+          <canvas id="graficoCategorias" height="220"></canvas>
+          <p class="vazio" id="semDespesas" style="display:none;">Nenhuma despesa registrada neste mês ainda.</p>
+        </div>
+
+        <div class="painel">
+          <h2>Alertas e notificações</h2>
+          <div class="lista-alertas" id="listaAlertas">
+            <p class="vazio">Carregando alertas…</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
