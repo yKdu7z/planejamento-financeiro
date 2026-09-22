@@ -15,10 +15,6 @@ projeto.
 | Autenticação   | JWT (JSON Web Token) + `bcryptjs` para hash de senha      |
 | Ferramentas    | Git/GitHub, VS Code                                       |
 
-Essa é a combinação sugerida para preencher a seção 16 (Tecnologias
-Utilizadas) da documentação. Arquitetura: `Usuário → Front-end → API/Back-end
-(Node.js + Express) → Banco de Dados (SQLite)`, exatamente como descrito na
-seção 15.
 
 ## Estrutura de pastas
 
