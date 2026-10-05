@@ -1,23 +1,24 @@
-const API_BASE = '/api';
+// Back-end em PHP: /web2/backend/... (caminho relativo à pasta do site)
+const API_BASE = 'backend';
 
+// Quem está logado é controlado pela sessão do PHP (cookie).
+// Aqui guardamos só os dados do usuário para exibir na tela (nome, moeda).
 const Sessao = {
-  salvar(token, usuario) {
-    localStorage.setItem('pf_token', token);
+  salvar(usuario) {
     localStorage.setItem('pf_usuario', JSON.stringify(usuario));
   },
-  token() {
-    return localStorage.getItem('pf_token');
+  logado() {
+    return Boolean(localStorage.getItem('pf_usuario'));
   },
   usuario() {
     const raw = localStorage.getItem('pf_usuario');
     return raw ? JSON.parse(raw) : null;
   },
   limpar() {
-    localStorage.removeItem('pf_token');
     localStorage.removeItem('pf_usuario');
   },
   exigirLogin() {
-    if (!this.token()) {
+    if (!this.logado()) {
       window.location.href = 'index.html';
     }
   },
@@ -25,12 +26,11 @@ const Sessao = {
 
 async function api(caminho, opcoes = {}) {
   const headers = { 'Content-Type': 'application/json', ...(opcoes.headers || {}) };
-  const token = Sessao.token();
-  if (token) headers.Authorization = `Bearer ${token}`;
 
-  const resposta = await fetch(`${API_BASE}${caminho}`, { ...opcoes, headers });
+  const resposta = await fetch(`${API_BASE}${caminho}`, { ...opcoes, headers, credentials: 'same-origin' });
 
-  if (resposta.status === 401) {
+  // Sessão expirada: volta para o login (exceto na própria tentativa de login)
+  if (resposta.status === 401 && caminho !== '/auth/login') {
     Sessao.limpar();
     window.location.href = 'index.html';
     return;

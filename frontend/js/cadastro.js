@@ -1,4 +1,4 @@
-if (Sessao.token()) window.location.href = 'dashboard.html';
+if (Sessao.logado()) window.location.href = 'dashboard.html';
 
 const areaAlerta = document.getElementById('areaAlerta');
 
@@ -19,7 +19,7 @@ document.getElementById('formCadastro').addEventListener('submit', async (evento
       method: 'POST',
       body: JSON.stringify(corpo),
     });
-    Sessao.salvar(dados.token, dados.usuario);
+    Sessao.salvar(dados.usuario);
     window.location.href = 'dashboard.html';
   } catch (erro) {
     areaAlerta.innerHTML = `<div class="alerta alerta-erro">${erro.message}</div>`;

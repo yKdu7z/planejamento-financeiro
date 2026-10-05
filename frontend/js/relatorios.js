@@ -48,14 +48,15 @@ function desenharEvolucao(evolucaoMensal) {
         {
           label: 'Saldo mensal',
           data: evolucaoMensal.map((m) => m.saldo),
-          borderColor: '#1d4d78',
-          backgroundColor: 'rgba(29, 77, 120, 0.12)',
+          borderColor: '#2e7f7a',
+          pointBackgroundColor: '#2e7f7a',
+          backgroundColor: 'rgba(46, 127, 122, 0.10)',
           fill: true,
           tension: 0.25,
         },
       ],
     },
-    options: { plugins: { legend: { display: false } } },
+    options: { aspectRatio: 1.6, plugins: { legend: { display: false } } },
   });
 }
 
@@ -71,12 +72,12 @@ function desenharGastos(gastosPorCategoria) {
         {
           label: 'Gasto',
           data: gastosPorCategoria.map((g) => g.total),
-          backgroundColor: '#2f6fa8',
-          borderRadius: 6,
+          backgroundColor: gastosPorCategoria.map((_, i) => CORES_GRAFICO[i % CORES_GRAFICO.length]),
+          borderRadius: 3,
         },
       ],
     },
-    options: { plugins: { legend: { display: false } }, scales: { x: { ticks: { autoSkip: false } } } },
+    options: { aspectRatio: 1.6, plugins: { legend: { display: false } }, scales: { x: { ticks: { autoSkip: false } } } },
   });
 }
 

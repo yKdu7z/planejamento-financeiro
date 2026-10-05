@@ -1,0 +1,8 @@
+# localhost/web2 abre o front-end (pasta frontend/) sem "/frontend" na URL.
+# As requisições para /web2/backend/... são tratadas pelo backend/.htaccess.
+# Qualquer outro caminho (.git/, README) não fica acessível pelo navegador.
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !/frontend/
+RewriteCond %{REQUEST_URI} !/backend/
+RewriteRule ^(.*)$ frontend/$1 [L]

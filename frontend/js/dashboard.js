@@ -9,7 +9,7 @@ async function carregarDashboard() {
 
     const saldoEl = document.getElementById('valSaldo');
     saldoEl.textContent = formatarMoeda(dados.saldoAtual, usuario.moeda);
-    saldoEl.className = 'valor ' + (dados.saldoAtual >= 0 ? 'positivo' : 'negativo');
+    saldoEl.className = 'valor valor-grande ' + (dados.saldoAtual >= 0 ? 'positivo' : 'negativo');
 
     document.getElementById('valReceitas').textContent = formatarMoeda(dados.totalReceitas, usuario.moeda);
     document.getElementById('valDespesas').textContent = formatarMoeda(dados.totalDespesas, usuario.moeda);
@@ -44,8 +44,6 @@ function desenharGrafico(despesasPorCategoria) {
     return;
   }
 
-  const cores = ['#1d4d78', '#2f6fa8', '#1f9d63', '#e2a13a', '#d64545', '#6b7684', '#8e5fc9', '#2fa8a0'];
-
   new Chart(canvas, {
     type: 'doughnut',
     data: {
@@ -53,13 +51,16 @@ function desenharGrafico(despesasPorCategoria) {
       datasets: [
         {
           data: despesasPorCategoria.map((d) => d.total),
-          backgroundColor: despesasPorCategoria.map((_, i) => cores[i % cores.length]),
-          borderWidth: 0,
+          backgroundColor: despesasPorCategoria.map((_, i) => CORES_GRAFICO[i % CORES_GRAFICO.length]),
+          borderWidth: 2,
+          borderColor: () => corCss('--superficie'),
         },
       ],
     },
     options: {
-      plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 12 } } } },
+      cutout: '62%',
+      aspectRatio: 1.5,
+      plugins: { legend: { position: 'right', labels: { boxWidth: 10, boxHeight: 10, padding: 14, font: { size: 12 } } } },
     },
   });
 }
@@ -69,7 +70,7 @@ async function carregarAlertas() {
   try {
     const alertas = await api('/relatorios/alertas');
     if (alertas.length === 0) {
-      container.innerHTML = '<p class="vazio">Nenhum alerta no momento. Tudo em ordem!</p>';
+      container.innerHTML = '<p class="vazio">Nenhum alerta. Seus limites e metas estão em dia.</p>';
       return;
     }
 

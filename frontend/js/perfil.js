@@ -30,7 +30,7 @@ document.getElementById('formPerfil').addEventListener('submit', async (evento) 
     await api('/auth/perfil', { method: 'PUT', body: JSON.stringify(corpo) });
 
     const usuarioAtual = Sessao.usuario();
-    Sessao.salvar(Sessao.token(), { ...usuarioAtual, nome: corpo.nome, salario: corpo.salario, moeda: corpo.moeda });
+    Sessao.salvar({ ...usuarioAtual, nome: corpo.nome, salario: corpo.salario, moeda: corpo.moeda });
 
     document.getElementById('novaSenha').value = '';
     areaAlerta.innerHTML = '<div class="alerta alerta-sucesso">Perfil atualizado com sucesso.</div>';

@@ -1,0 +1,2 @@
+# O código da aplicação nunca é acessado direto pelo navegador, só pelo index.php
+Require all denied

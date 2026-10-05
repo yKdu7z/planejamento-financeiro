@@ -58,7 +58,7 @@ async function carregarLancamentos() {
         <td>${l.descricao}</td>
         <td>${l.categoria_nome || '—'}</td>
         <td><span class="tag ${l.tipo === 'receita' ? 'tag-receita' : 'tag-despesa'}">${l.tipo === 'receita' ? 'Receita' : 'Despesa'}</span></td>
-        <td>${l.tipo === 'despesa' ? '-' : ''}${formatarMoeda(l.valor, usuario.moeda)}</td>
+        <td class="num ${l.tipo === 'receita' ? 'positivo' : ''}">${l.tipo === 'despesa' ? '-' : ''}${formatarMoeda(l.valor, usuario.moeda)}</td>
         <td class="acoes-linha">
           <button class="btn btn-secundario btn-pequeno" data-editar="${l.id}">Editar</button>
           <button class="btn btn-perigo btn-pequeno" data-excluir="${l.id}">Excluir</button>
