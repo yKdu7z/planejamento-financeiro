@@ -1,7 +1,4 @@
 <?php
-/**
- * Acesso às tabelas metas e aportes_meta.
- */
 class MetaModel
 {
     public function listar(int $usuarioId): array

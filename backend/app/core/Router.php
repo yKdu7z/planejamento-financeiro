@@ -1,11 +1,4 @@
 <?php
-/**
- * Roteador: liga cada URL + método HTTP a um método de um controller.
- * As rotas são declaradas em app/routes.php.
- *
- * Exemplo: $router->put('/lancamentos/{id}', [LancamentoController::class, 'atualizar']);
- *   PUT /web2/api/lancamentos/7 → LancamentoController->atualizar($req) com $req->params['id'] = '7'
- */
 class Router
 {
     private array $rotas = [];

@@ -1,7 +1,4 @@
 <?php
-/**
- * Acesso à tabela usuarios.
- */
 class UsuarioModel
 {
     public function buscarPorEmail(string $email): ?array

@@ -1,7 +1,5 @@
 <?php
-/**
- * Limites de gastos por categoria (RF19-RF20).
- */
+
 class OrcamentoController
 {
     private OrcamentoModel $orcamentos;

@@ -40,6 +40,7 @@ navegador → backend/.htaccess → backend/index.php → Router → Controller 
 ```
 WEB2/
 ├── .htaccess                   # localhost/web2 serve a pasta frontend/
+├── BANCO.sql                   # script que cria o banco e as tabelas no MySQL
 ├── README.md
 ├── frontend/                   # o que roda no navegador
 │   ├── index.html              # tela de login
@@ -66,18 +67,49 @@ WEB2/
 
 ## Como executar
 
-Pré-requisito: WAMP ligado (ícone verde), com o projeto na pasta
-`C:\wamp64\www\WEB2` (ou `D:\wamp64\www\WEB2`).
+Pré-requisito: WAMP ligado (ícone verde), com o projeto na pasta `www\web2`
+do WAMP (ex.: `C:\wamp64\www\web2` ou `E:\wamp\www\web2`) e o módulo
+`rewrite_module` do Apache ativo (ícone do WAMP → Apache → Apache modules).
 
-1. **Banco:** o banco `planejamento_financeiro` precisa existir no MySQL do
-   WAMP, com as tabelas `usuarios`, `categorias`, `lancamentos`, `metas`,
-   `aportes_meta` e `orcamentos`.
-2. **Acesse:** `http://localhost/web2`
+1. **Banco:** abra o phpMyAdmin (`http://localhost/phpmyadmin`, usuário
+   `root`, sem senha), vá na aba **Importar**, selecione o arquivo
+   `BANCO.sql` e clique em **Executar**. Ele cria o banco
+   `planejamento_financeiro` com as tabelas `usuarios`, `categorias`,
+   `lancamentos`, `metas`, `aportes_meta` e `orcamentos`.
+   Atenção: o script apaga e recria o banco, então rode só na primeira vez.
+2. **Acesse:** `http://localhost/web2` e crie uma conta pela tela de cadastro.
 
 Não é preciso instalar nem rodar nada além do WAMP. Se o MySQL tiver senha,
 preencha em `backend/app/config/config.php`.
 
+## Banco de dados
+
+MySQL do WAMP, administrado pelo phpMyAdmin. A estrutura completa está em
+`BANCO.sql`.
+
+| Tabela         | O que guarda                                            |
+|----------------|---------------------------------------------------------|
+| `usuarios`     | Contas (nome, e-mail, senha em bcrypt, salário, moeda)  |
+| `categorias`   | Categorias de receita/despesa de cada usuário           |
+| `lancamentos`  | Receitas e despesas                                     |
+| `metas`        | Metas financeiras (valor objetivo, valor inicial, prazo)|
+| `aportes_meta` | Valores guardados em cada meta                          |
+| `orcamentos`   | Limite de gasto por categoria em cada mês (um por mês)  |
+
+Toda tabela de dados tem `usuario_id` (ou pertence a uma meta do usuário),
+com chave estrangeira e exclusão em cascata. O banco começa vazio: as
+categorias padrão são criadas pelo sistema no cadastro de cada usuário
+(`CategoriaModel::criarPadrao`).
+
+A conexão é feita em `backend/app/core/Database.php` (PDO), lendo os dados de
+`backend/app/config/config.php`. Só os Models executam SQL, sempre com
+*prepared statements*.
+
 ## Rotas da API
+
+Todas as rotas ficam em `http://localhost/web2/backend` (ex.:
+`/web2/backend/lancamentos`) e respondem em JSON. Exceto cadastro, login e
+logout, todas exigem usuário logado.
 
 | Método | Rota                         | O que faz                              |
 |--------|------------------------------|----------------------------------------|
@@ -121,7 +153,7 @@ Os caminhos do back-end abaixo são relativos a `backend/app/`.
   HTML `required`, `min`, `minlength`) quanto no back-end (cada controller
   valida os dados antes de gravar no banco)
 
-## Sugestão para as seções pendentes da documentação (seções 17, 22, 23)
+## Sugestão para as seções pendentes da documentação (seções 17, 22, 25)
 
 - **Seção 17 (Interface do Sistema)**: basta rodar o projeto e printar as
   telas listadas — todas já estão implementadas e funcionais.

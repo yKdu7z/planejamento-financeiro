@@ -1,8 +1,4 @@
 <?php
-/**
- * Junta os dados da meta (banco) com os cálculos das regras de negócio.
- * Usado pelo MetaController e pelo RelatorioController.
- */
 class MetaService
 {
     private MetaModel $metas;

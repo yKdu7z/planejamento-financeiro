@@ -1,7 +1,4 @@
 <?php
-/**
- * Resposta HTTP em JSON devolvida pelos controllers.
- */
 class Resposta
 {
     private function __construct(private mixed $dados, private int $status)

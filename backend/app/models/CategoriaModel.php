@@ -1,7 +1,4 @@
 <?php
-/**
- * Acesso à tabela categorias.
- */
 class CategoriaModel
 {
     // Categorias criadas automaticamente para todo novo usuário

@@ -1,8 +1,5 @@
 <?php
-/**
- * Conexão com o MySQL (PDO) e atalhos para executar consultas.
- * Só os Models usam esta classe: nenhum controller escreve SQL.
- */
+
 class Database
 {
     private static ?PDO $conexao = null;

@@ -1,7 +1,5 @@
 <?php
-/**
- * Saldo, resumo do mês e gráfico de despesas (RF11-RF13).
- */
+
 class DashboardController
 {
     public function resumo(Request $req): Resposta

@@ -1,8 +1,5 @@
 <?php
-/**
- * Acesso à tabela lancamentos (receitas e despesas), incluindo os
- * totais e agrupamentos usados pelo dashboard, orçamentos e relatórios.
- */
+
 class LancamentoModel
 {
     /** Histórico com filtros opcionais: data_inicio, data_fim, categoria_id, tipo */

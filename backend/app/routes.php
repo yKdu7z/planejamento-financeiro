@@ -1,11 +1,4 @@
 <?php
-/**
- * Tabela de rotas da API: método HTTP + URL → controller e método.
- * O terceiro parâmetro "true" marca as rotas públicas (sem login);
- * todas as outras exigem usuário autenticado.
- *
- * @var Router $router
- */
 
 // Autenticação e perfil (RF01-RF03)
 $router->post('/auth/cadastro', [AuthController::class, 'cadastrar'], true);

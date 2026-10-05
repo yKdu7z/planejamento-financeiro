@@ -1,7 +1,5 @@
 <?php
-/**
- * Receitas e despesas (RF04-RF10).
- */
+
 class LancamentoController
 {
     private LancamentoModel $lancamentos;

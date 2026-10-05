@@ -1,7 +1,5 @@
 <?php
-/**
- * Categorias de receitas e despesas (RF08).
- */
+
 class CategoriaController
 {
     private CategoriaModel $categorias;

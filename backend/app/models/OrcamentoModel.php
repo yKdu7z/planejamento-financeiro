@@ -1,7 +1,4 @@
 <?php
-/**
- * Acesso à tabela orcamentos (limites de gasto por categoria e mês).
- */
 class OrcamentoModel
 {
     public function listarDoMes(int $usuarioId, int $mes, int $ano): array

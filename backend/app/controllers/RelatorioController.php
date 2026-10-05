@@ -1,7 +1,5 @@
 <?php
-/**
- * Relatórios financeiros e alertas (seções 20 e 21 da documentação).
- */
+
 class RelatorioController
 {
     // RF09 / seção 20 - Relatórios financeiros simples

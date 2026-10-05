@@ -1,8 +1,4 @@
 <?php
-/**
- * Regras de negócio da seção 11 da documentação (RN01 a RN09).
- * Não acessa o banco: recebe valores e devolve resultados calculados.
- */
 class RegrasNegocio
 {
     // RN01 — Cálculo do saldo: Saldo = Receitas - Despesas

@@ -1,7 +1,5 @@
 <?php
-/**
- * Metas financeiras e aportes (RF14-RF18).
- */
+
 class MetaController
 {
     private MetaModel $metas;

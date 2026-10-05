@@ -1,9 +1,5 @@
 <?php
-/**
- * Autenticação por sessão do PHP (RNF02).
- * Depois do login, o id do usuário fica em $_SESSION e todas as consultas
- * filtram por ele, então um usuário nunca acessa dados de outro (RNF03).
- */
+
 class Auth
 {
     public static function iniciarSessao(): void

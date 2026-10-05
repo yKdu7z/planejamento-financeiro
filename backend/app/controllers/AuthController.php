@@ -1,7 +1,5 @@
 <?php
-/**
- * Cadastro, login, logout e perfil do usuário (RF01-RF03).
- */
+
 class AuthController
 {
     private UsuarioModel $usuarios;
@@ -31,7 +29,7 @@ class AuthController
         $id = $this->usuarios->criar(
             $nome,
             $email,
-            password_hash($senha, PASSWORD_DEFAULT), // senha nunca é salva em texto puro
+            password_hash($senha, PASSWORD_DEFAULT), // password_hash senha criptografada
             (float) $req->campo('salario', 0),
             $req->campo('moeda') ?: 'BRL'
         );

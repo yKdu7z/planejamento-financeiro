@@ -1,7 +1,4 @@
 <?php
-/**
- * Dados da requisição já organizados para os controllers.
- */
 class Request
 {
     public string $metodo;
@@ -18,7 +15,7 @@ class Request
         $req->query = $_GET;
         $req->corpo = json_decode(file_get_contents('php://input') ?: '[]', true) ?: [];
 
-        // Remove o prefixo da pasta (/web2/api) para sobrar só a rota
+        // Remove o prefixo da pasta (/web2/backend) para sobrar só a rota
         $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
         $base = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
         if (stripos($uri, $base) === 0) {

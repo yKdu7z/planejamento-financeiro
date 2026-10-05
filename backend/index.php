@@ -1,11 +1,4 @@
 <?php
-/**
- * Ponto de entrada único da API (front controller).
- *
- * Fluxo de uma requisição:
- *   navegador → .htaccess → index.php → Router → Controller → Model (banco) → resposta JSON
- */
-
 declare(strict_types=1);
 
 date_default_timezone_set('America/Sao_Paulo');
